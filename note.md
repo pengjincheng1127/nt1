@@ -147,7 +147,6 @@ npm install nrm -g
     - yarn add 安装程序
     - yarn remove 要删除的程序
 
-
 # 第二天
 
 ## 作用域（scope）
