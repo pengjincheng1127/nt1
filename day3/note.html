@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Document</title>
+</head>
+
+<body>
+
+     <script>
+          /*
+          this 在事件函数中，事件触发是谁，this就是谁
+          */
+          // document.onclick =function(){
+          //      console.log(this); //document
+          // }
+          /*
+          函数直接调用,默认this为window
+          */
+          // function fn(){
+          //      console.log(this);//window
+          // }
+          // fn(); //window
+          /*
+          方法（函数前面有主的都叫方法），this就是.前面的主（箭头函数例外）
+          */
+          // let obj ={
+          //      fn:function(){
+          //           console.log(this);
+          //      }
+          // }
+          // obj.fn(); //obj
+          /*
+          箭头函数，他的this为函数定义时的上下文作用域
+           */
+          // document.onclick = function(){
+          //      let fn =()=>{
+          //           console.log(this); //document
+          //      }
+          //      fn();
+          // }
+          //   document.onclick = ()=>{
+          //  console.log(this);//window
+          //     }
+          /*
+          单例模式：
+               单独是实例（实例，具体的事务）
+          */
+          //由多个简单类型或者引用类型组合在一起的事务
+          // let obj ={
+          //      name:'赵炎',
+          //      age:50,
+          //      sex:'不明',
+          // }
+          /*
+          高级单例模式（让单例模式功能更加强大，可以隐藏内部代码，形成模块化编程）
+          */
+ /*          let a = (function () {
+               function hh() {
+
+               }
+               let obj = {
+                    name: '赵炎',
+                    age: 50,
+                    sex: '不明',
+                    hh:hh
+               }
+               return obj;
+          })()
+          a.hh();//调用
+          console.log(a);//输出{} */
+          
+          /*
+          柯里化函数：利用闭包原理在执行可以形成一个不销毁的作用域，然后把需要预先处理的内容都储存在这个不销毁的作用域中，并且返回一个最少参数函数
+          */
+
+          // function fn(x){
+          //      return function(y){
+          //           return(x*y);
+          //      }
+          // }
+          // let a = fn(2);
+          // let b = a(5);
+          // console.log(b);//10
+          
+          //箭头函数
+               // let a = x => y => x+y
+               // let b =  a(2)(5)
+               // console.log(b);//7
+          
+
+          /*
+          工厂模式（有初始化、加工、出厂） 
+               目的就是为了批量生产对象
+          */
+         /*  function person(name,age,sex){
+               let obj =new Object(); //初始化（原材料）
+
+               //加工
+               obj.name =name;
+               obj.age =age;
+               obj.sex = sex;
+
+               //出厂
+               return obj;
+          }
+          let obj = person('张三',10,'男');//批量生产
+          console.log(obj);//{name: "张三", age: 10, sex: "男"}
+           */
+           /*
+           面向对象（Object Orientred,OO）
+               是一种对现实世界理解和抽象的方法，是计算机编程技术发展到一定阶段后的产物
+          现实理解（东西是一样的，但是角度不同，所以描述的过程不同）
+          抽象：抽出像的部分（归类）
+
+          归类(归纳多种相同的特征)
+
+          面向对象是一种编程思想，就是把相同部分的代码抽离出来归为一类，把描述这个类的共有特征（方法或者属性）挂在类的原型下的一种编程思想（方式、模式）
+          new Array
+          new Date
+          new String 
+
+          类的首字母大写
+           */
+           /*
+           new 一元运算符，专门运算函数的，能让函数不加括号的情况下执行，加括号为了传参
+
+           构造函数中的this就是这个构造函数的实例化对象，默认的this也是实例化对象
+
+           return 返回值的如果是简单类型，那么返回的结果为实例化对象，如果返回值为引用类型，那么返回的结果就是这个引用类型
+           
+           */
+
+     /*     
+       function Fn(x){
+                console.log(this); //Fn{}
+               //  return null; //Fn{}
+               return [1];//[1];
+
+           }
+           let f =new Fn('y');
+           console.log(f); 
+           */
+           /*
+           当一个函数创建出来的时候，自身会带有一些属性和方法
+           其中有一个属性叫prototype ，值是对象，他就是原型
+
+           作用：
+               构造函数原型下的属性或者方法，只能给函数的实例化对象使用
+          原型链：
+           __proto__ 只要是实例都有__proto__,而这个原型链是全等于构造函数的原型
+               obj.__proto__ === fn.prototype
+           */
+           function Fn(){
+
+           }
+           Fn.prototype.say =20;
+
+           let obj = new Fn;
+           
+     console.log(obj.__proto__ === Fn.prototype);//true
+     // console.dir(Fn);
+     console.log(Object.prototype.__proto__);//null
+     //数据查找到了Object的原型就没有后续，因为Object,prototype.__proto__ =null
+     console.log(obj.__proto__.say === Fn.prototype.say);//true
+     console.log(Fn.prototype.__proto__ === Object.prototype);//true
+     console.log(Fn.prototype); //{say: 20, constructor: ƒ}
+     // console.dir(Fn.prototype)
+</script>
+</body>
+
+</html>
