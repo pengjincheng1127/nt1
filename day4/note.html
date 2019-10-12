@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Document</title>
+</head>
+
+<body>
+     <script>
+          /*
+     内置类就是浏览器自带一些类，这些类都是函数
+
+     包装对象：
+          在简单类型（排除null，undefined）使用属性或者方法的时候，浏览器会偷偷的创建一个内置类型的实例 把使用的属性或者方法返回出去之后，这个对象被销毁，这个内置类的实例就叫包装对象
+     */
+          /*      
+               let str = 'asd';
+               let str2 = new String('asd');
+                    str2.length =2;
+                    console.log(str2);
+               */
+          // Array.prototype.hh = function(){
+          //      alert('嘻嘻');
+          // }
+          // var ary =[];
+          // ary.hh()
+          // console.log(Array.prototype);
+
+          /*
+          for in 会枚举原型链，也就是除了对象自身的属性意外，还会查找原型链上的自定义属性
+
+          可以通过obj.hasOwnProperty('属性名')去检测某个属性是不是对象自身的
+          如果是自身的，就返回true，否则就是false
+          */
+          /*           let obj ={
+                         a:1,
+                         b:2
+                    }
+                    for(let attr in obj){
+                         if(obj.hasOwnProperty(attr)){
+                              console.log(obj[attr]);    
+                         }
+                         console.log(attr);
+                         
+                    } */
+          /*
+          查看某个属性是不是公共的
+          */
+          /*          function Fn(){
+                        this.b = 50;
+                        this.c = 60
+                   }
+                   Fn.prototype.d = 70;
+
+                   let f =new Fn;
+                   function hasPubProperty(obj,attr){
+                    return (attr in obj) && !obj.hasOwnProperty(attr);
+                   } 
+                   console.log(hasPubProperty(f,'d'));
+                    */
+          /*
+          call为了修改this指针
+           当一个函数在创建的时候，自身有一些属性和方法，其中有个方法为call
+
+           多个参数：
+                1.修改this指针
+                2.第二个参数之后都是实参
+
+                第一个参数除了null和undefined 别的都是写啥是啥
+          */
+          /*          function fn(a,b,c){
+                    console.log(this,a,b,c);
+                   }
+                   fn.call(window,1,2,3)
+                   console.dir(fn) */
+
+          /*
+           new 函数内的this变成了实例
+                默认return实例
+          */
+        /*   function myNew(fn,...arg){
+        let obj = {}; //Object.create({})
+        //构造函数的原型 === 实例的原型链
+        obj.__proto__ =  fn.prototype; //Object
+
+        let reVal = fn.call(obj,...arg);
+
+        // console.log(reVal);
+
+        if(isYYType(reVal)){
+            return reVal
+        }else{
+            return obj;
+        } */
+
+        // if(reVal !== undefined && reVal !== null){
+        //     reVal.ha = 1;
+        //     console.log(reVal.ha === undefined);//如果ha是个undefined说明它是简单类型
+        //     if(reVal.ha === undefined){
+        //         return obj;
+        //     }else{
+        //         return reVal;
+        //     }
+        // }else{
+        //     return obj;
+        // }
+        
+
+        //如果构造函数return的不是引用类型默认就为实例
+         /* if(!reVal){
+             return obj;
+         }else{
+             // 如果构造函数return的是引用类型返回的就是构造函数return的引用类型
+             return reVal;
+         } */
+          // }
+
+/* 
+    function Fn(name,age){
+        // console.log(this);
+        this.name = name;
+        this.age = age;
+        // return [];
+    }
+    
+    let f = myNew(Fn,'zhang',8888);
+
+    console.log(f);
+    // console.log(f.__proto__);//Fn.prototype
+
+    function isYYType(data){
+        // 如果data是symbol那么直接返回false;
+        if(typeof data === 'symbol')return false;
+        let ary = ['String','Number','Null','Undefined','Boolean'];
+        let toS = Object.prototype.toString;
+        let rv = ary.some(item=>toS.call(data) === '[object '+ item +']');
+        //  不是预留的简单类型就是引用类型
+        if(!rv){
+            return true;
+        }
+        return false;
+    } */
+
+     </script>
+</body>
+
+</html>

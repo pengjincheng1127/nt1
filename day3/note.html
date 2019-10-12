@@ -154,7 +154,7 @@
            __proto__ 只要是实例都有__proto__,而这个原型链是全等于构造函数的原型
                obj.__proto__ === fn.prototype
            */
-           function Fn(){
+/*            function Fn(){
 
            }
            Fn.prototype.say =20;
@@ -168,8 +168,23 @@
      console.log(obj.__proto__.say === Fn.prototype.say);//true
      console.log(Fn.prototype.__proto__ === Object.prototype);//true
      console.log(Fn.prototype); //{say: 20, constructor: ƒ}
-     // console.dir(Fn.prototype)
+     // console.dir(Fn.prototype) */
+
+/*      function Fn() {
+          this.a =10;
+     }
+     Fn.prototype.a = 40;
+     // Fn.a =30;
+     Fn.prototype.a = 40;
+     Object.prototype.a =60;
+     Function.prototype.a = 50
+     Function.a=70;
+     let f = new Fn();
+     f.a =40;
+     console.log(Fn.a);
+      */
+  
 </script>
 </body>
 
-</html>
+</html>                            

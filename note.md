@@ -299,6 +299,14 @@ function(){
         __proto__ 只要是实例都有__proto__，而这个原型链是全等于构造函数的原型
         obj.__proto === fn.prototype
 
+    实例下如果有优先实例下的属性或者方法
+    通过实例的原型链找到构造函数的原型
+    构造函数的原型的原型链找到了Object的原型
+
+    Function 的原型链等于Function的原型
+
+    通过实例调用构造函数原型下的方法，this就是实例
+
 ### 单例模式
     单独是实例（实例，具体的事务）。
 
@@ -335,6 +343,7 @@ function(){
 ```
 
 ### 工厂模式（初始化、加工、出场）
+
     工厂模式的目的就是为了批量生产对象
  ```js
         function person(name,age,job,sex){
@@ -353,4 +362,55 @@ function(){
         //obj和obj2就叫实例
         let obj = person('赵炎',15,'前端开发工程师','?'); //批量生产
         let obj2 = person('你真胖',15,'前端开发工程师','?');
-    ```    
+```
+
+# 第五天
+## 内置类
+    内置类就是浏览器自带的一些类这些类都是函数
+    Array
+    Object
+    String
+    Boolean
+    Number
+    Symbol
+    Function 
+
+    包装对象：
+        在简单类型(排除Null和Undefined)使用属性或者方法的时候，浏览器会偷偷的创建一个内置类的实例，把使用的属性或者方法返回出去之后，这个对象被销毁，这个内置类的实例就叫包装对象
+
+### hasOwnProperty
+    for in会枚举原型链,也就是除了对象自身的属性以外，还会查找原型链上的自定义属性
+        
+        可以通过obj.hasOwnProperty('属性名')去检测某个属性是不是对象自身的
+        如果是自身的，就返回true，否则false
+### hasPubProperty
+    查看属性是不是公共的
+```js
+   function Fn(){
+        this.a = 10;
+        this.b = 20;
+    }
+    Fn.prototype.c = 30;  //公共属性
+    let f = new Fn;
+    console.log(hasPubProperty(f,'a'));
+    function hasPubProperty(obj,attr){
+        //如果f能找到c并且c不是f自身的属性，那么就是公共的
+        return (attr in obj) && !obj.hasOwnProperty(attr);
+    }
+```
+
+### call
+
+    为了修改 this 指针
+    当一个函数在创建的时候，自身有一些属性和方法，其中有个方法为call
+    多个参数
+    1.修改this指针
+    2.第二个参数之后都是实参
+
+    第一个参数除了null和undefined，别的都是写啥是啥。
+
+### 重写new
+
+    new ：
+    函数内的this变成了实例
+    默认return实例
